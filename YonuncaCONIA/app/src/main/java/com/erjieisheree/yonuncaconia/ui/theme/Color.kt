@@ -19,3 +19,7 @@ val Purple40 = Color(0xFFBB86FC)
 val Pink40 = Color(0xFFFF79C6)
 val NavyMarine40 = Color(0xFF1F1B3A)
 val AlmostBlack40 = Color(0xFF121212)
+
+
+//Transparent
+val Transparent = Color(0x6D000000)

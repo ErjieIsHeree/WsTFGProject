@@ -15,7 +15,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.modifier.modifierLocalMapOf
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -56,10 +55,10 @@ fun GameScreen(navController: NavController) {
         )
         Row {
             Button(
-                onClick = { /*TODO*/ }
-            ) {
+                    onClick = { /*TODO*/ }
+                    ) {
                 Image(
-                    painter = painterResource(id = R.drawable.cross),
+                    painter = painterResource(id = R.drawable.ic_launcher_background),
                     contentDescription = "Dislike",
                     colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary),
                     modifier = Modifier
@@ -70,7 +69,7 @@ fun GameScreen(navController: NavController) {
                 onClick = { /*TODO*/ }
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.tick),
+                    painter = painterResource(id = R.drawable.ic_launcher_background),
                     contentDescription = "Like",
                     colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary),
                     modifier = Modifier

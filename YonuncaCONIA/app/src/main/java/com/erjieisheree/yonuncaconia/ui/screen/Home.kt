@@ -1,155 +1,118 @@
 package com.erjieisheree.yonuncaconia.ui.screen
 
-import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.erjieisheree.yonuncaconia.R
-import com.erjieisheree.yonuncaconia.ui.others.Background
-import com.erjieisheree.yonuncaconia.ui.theme.YoNuncaCONIATheme
+import com.erjieisheree.yonuncaconia.ui.screen.other.GeneralBackground
+import com.erjieisheree.yonuncaconia.ui.screen.other.CustomButton
 
 
 @Composable
-fun HomeScreen(navController: NavController) {
-    Scaffold () { innerPadding ->
-        Background()
-        Column (
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier
-                .padding(innerPadding)
-                .padding(30.dp, 70.dp, 30.dp, 0.dp)
-                .fillMaxSize()
-        ) {
-            Row () {
-                UserButton(
-                    modifier = Modifier
-                        .weight(75f)
-                )
-                Spacer(
-                    modifier = Modifier
-                        .weight(5f)
-                )
-                MenuButton(modifier = Modifier
-                    .weight(20f))
-            }
-            Spacer(
-                modifier = Modifier
-                    .weight(1f)
-            )
-            PlayButton(
-                navController
-            )
-            Spacer(
-                modifier = Modifier
-                    .weight(1f)
-            )
-        }
-    }
-}
+fun HomeScreen(
+    navigateToGame: () -> Unit,
+    showBlock: () -> Unit
+) {
+    GeneralBackground(false)
 
-
-@Composable
-fun UserButton(modifier: Modifier) {
-    Column (
-        modifier = modifier
-            .clip(RoundedCornerShape(20))
-            .background(color = MaterialTheme.colorScheme.secondary)
-    ) {
-        Row (
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .padding(10.dp, 20.dp)
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.menu),
-                contentDescription = "User",
-                modifier = Modifier
-                    .clip(CircleShape)
-                    .background(MaterialTheme.colorScheme.onPrimary)
-                    .weight(30f)
-            )
-            Spacer(
-                modifier = Modifier
-                    .weight(5f)
-            )
-            Text(
-                text = "ErjieIsHeree",
-                color = MaterialTheme.colorScheme.onPrimary,
-                style = MaterialTheme.typography.labelMedium,
-                modifier = Modifier
-                    .weight(65f)
-            )
-        }
-    }
-}
-
-
-@Composable
-fun MenuButton(modifier: Modifier) {
-
-    Image(
-        painter = painterResource(id = R.drawable.menu),
-        contentDescription = "Menu",
-        modifier
-            .clickable { /*TODO*/ }
-            .clip(RoundedCornerShape(20))
-            .background(MaterialTheme.colorScheme.primary),
-        colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onPrimary)
-    )
-}
-
-
-@Composable
-fun PlayButton(navController: NavController) {
-
-    val configuration = LocalConfiguration.current
-    val screenWidth = configuration.screenWidthDp.dp
-
-    Button (
-        onClick = {navController.navigate("pregame")},
+    Column(
         modifier = Modifier
-            .clip(RoundedCornerShape(20))
-            .background(color = MaterialTheme.colorScheme.primary)
-            .width(screenWidth * 0.4f)
+            .fillMaxSize()
+            .padding(35.dp, 50.dp, 35.dp, 50.dp)
+        ,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Top
     ) {
-        Text(
-            text = "GAME",
-            color = MaterialTheme.colorScheme.onPrimary,
-            style = MaterialTheme.typography.titleMedium
-        )
-    }
-}
+        Row(
+            modifier = Modifier,
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.Top
 
+        ) {
+            Card(
+                modifier = Modifier
+                    .width(270.dp)
+                    .height(100.dp)
+                ,
+                shape = RoundedCornerShape(10f),
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.secondary,
+                    contentColor = MaterialTheme.colorScheme.onPrimary
+                )
+            ) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                    ,
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = stringResource(R.string.user_name),
+                        color = MaterialTheme.colorScheme.onPrimary,
+                        style = MaterialTheme.typography.labelLarge
+                    )
+                }
+            }
 
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_NO, apiLevel = 34)
-@Composable
-private fun Preview() {
-    YoNuncaCONIATheme {
-        HomeScreen(rememberNavController())
+            Spacer(
+                modifier = Modifier
+                    .weight(1f)
+            )
+
+            Box(
+                modifier = Modifier
+                    .width(50.dp)
+                    .height(50.dp)
+                    .background(color = MaterialTheme.colorScheme.primary, shape = RoundedCornerShape(10f))
+                    .clickable{ showBlock() }
+                ,
+                contentAlignment = Alignment.Center,
+            ) {
+                Image(
+                    painter = painterResource(R.drawable.menu),
+                    contentDescription = stringResource(R.string.desc_menu),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(5.dp)
+                    ,
+                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onPrimary)
+                )
+            }
+        }
+
+        Box(
+            modifier = Modifier
+                .fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            CustomButton(
+                title = stringResource(R.string.game),
+                onClick = navigateToGame,
+                modifier = Modifier
+                    .height(80.dp)
+                    .width(180.dp)
+            )
+        }
     }
 }

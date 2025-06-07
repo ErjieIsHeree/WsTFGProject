@@ -8,64 +8,53 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.erjieisheree.yonuncaconia.R
 
-private val myFont = FontFamily(
-    Font(R.font.inter, FontWeight.Thin),
-    Font(R.font.jockeyone, FontWeight.Bold)
-)
+private val JockeyOne = FontFamily(Font(R.font.jockeyone))
+private val Inter = FontFamily(Font(R.font.inter))
 
 // Set of Material typography styles to start with
 val Typography = Typography(
-    //El titulo inicial
-    titleLarge = TextStyle(
-        fontFamily = myFont,
-        fontWeight = FontWeight.Bold,
-        fontSize = 90.sp,
-        lineHeight = 80.sp
-    ),
-    //El Tap Tap...
-    labelSmall = TextStyle(
-        fontFamily = myFont,
-        fontWeight = FontWeight.Thin,
-        fontSize = 25.sp
-    ),
-    //TODO Labels medianos
-    labelMedium = TextStyle(
-        fontFamily = myFont,
-        fontWeight = FontWeight.Bold,
-        fontSize = 24.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.5.sp
-    ),
-    //TODO El titulo de las cartas
-    titleMedium = TextStyle(
-        fontFamily = myFont,
-        fontWeight = FontWeight.Bold,
-        fontSize = 48.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.5.sp
-    ),
-    //TODO Las cartas del juego
-    bodyLarge = TextStyle(
-        fontFamily = myFont,
+    //Splash Screen
+    displayLarge = TextStyle(
+        fontFamily = JockeyOne,
         fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.5.sp
+        fontSize = 85.sp,
+        lineHeight = 75.sp,
+        letterSpacing = (-0.4).sp
     ),
-    //TODO Labels grandes
+    displaySmall = TextStyle(
+        fontFamily = Inter,
+        fontWeight = FontWeight.Light,
+        fontSize = 20.sp
+    ),
+    //Card title
+    displayMedium = TextStyle(
+        fontFamily = JockeyOne,
+        fontWeight = FontWeight.Normal,
+        fontSize = 56.sp,
+        letterSpacing = (-0.5).sp //TODO
+    ),
+    //Card text
     labelLarge = TextStyle(
-        fontFamily = myFont,
+        fontFamily = JockeyOne,
         fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.5.sp
+        fontSize = 32.sp
     ),
-    //TODO Favoritos
-    bodySmall = TextStyle(
-        fontFamily = myFont,
+    //Play buttons and main titles
+    titleLarge = TextStyle(
+        fontFamily = JockeyOne,
         fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.5.sp
+        fontSize = 46.sp
+    ),
+    //General text
+    labelMedium = TextStyle(
+        fontFamily = JockeyOne,
+        fontWeight = FontWeight.Normal,
+        fontSize = 26.sp
+    ),
+    //Small text
+    labelSmall = TextStyle(
+        fontFamily = JockeyOne,
+        fontWeight = FontWeight.Normal,
+        fontSize = 20.sp
     ),
 )

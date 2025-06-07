@@ -42,6 +42,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.vector.VectorProperty
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
@@ -56,10 +57,13 @@ import com.erjieisheree.yonuncaconia.ui.others.Background
 import com.erjieisheree.yonuncaconia.ui.others.Star
 import com.erjieisheree.yonuncaconia.ui.theme.YoNuncaCONIATheme
 import kotlin.math.exp
+import com.erjieisheree.yonuncaconia.controller.GameCreate
 
+public var userInput by mutableStateOf("")
+var predefinedOption by mutableStateOf("")
+var selectedQty by mutableIntStateOf(5)
+var isPredefined by mutableStateOf(false)
 
-var text by mutableStateOf("")
-var selectedGame by mutableStateOf("")
 
 @Composable
 fun PregameScreen(navController: NavController) {
@@ -123,8 +127,8 @@ fun UserCustomInput(modifier: Modifier) {
         )
 
         TextField(
-            value = text,
-            onValueChange = { text = it },
+            value = userInput,
+            onValueChange = { userInput = it },
             modifier = Modifier
                 .clip(RoundedCornerShape(0))
         )
@@ -144,7 +148,7 @@ fun UserPredefinedInput(modifier: Modifier = Modifier) {
     ) {
         OutlinedTextField(
             readOnly = true,
-            value = selectedGame.toString(),
+            value = predefinedOption.toString(),
             onValueChange = {},
             label = { Text("o selecciona uno predefinido") },
             trailingIcon = {
@@ -164,7 +168,7 @@ fun UserPredefinedInput(modifier: Modifier = Modifier) {
                 DropdownMenuItem(
                     text = { Text(option) },
                     onClick = {
-                        selectedGame = option
+                        predefinedOption = option
                         expandedSelection = false
                     }
                 )
@@ -231,8 +235,6 @@ fun UserPredefinedInput(modifier: Modifier) {
 
 @Composable
 fun IsUserInput() {
-    var isPredefined by remember { mutableStateOf(false) }
-
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center
@@ -258,7 +260,6 @@ fun IsUserInput() {
 fun CardsQty(modifier: Modifier = Modifier) {
     val cardsQty = listOf(5, 10, 15, 20, 25)
     var expandedQty by remember { mutableStateOf(false) }
-    var selectedQty by remember { mutableIntStateOf(cardsQty[0]) }
 
     ExposedDropdownMenuBox (
         expanded = expandedQty,
@@ -359,7 +360,9 @@ fun StartButton(navController: NavController) {
     val screenWidth = configuration.screenWidthDp.dp
 
     Button (
-        onClick = { loadGame(text, ); },
+        onClick = {
+            GameCreate.getInstance().loadGame(userInput, predefinedOption, selectedQty, isPredefined);
+        },
         modifier = Modifier
             .clip(RoundedCornerShape(20))
             .background(color = MaterialTheme.colorScheme.primary)

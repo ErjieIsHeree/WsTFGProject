@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Yo nunca... CON IA"
+rootProject.name = "Yo nunca con IA"
 include(":app")
  
