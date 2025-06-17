@@ -1,0 +1,3 @@
+1.Abrir MySQL y conectar base de datos
+2.Correr servidor
+3.Iniciar app
